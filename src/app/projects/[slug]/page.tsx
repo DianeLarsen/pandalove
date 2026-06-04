@@ -51,15 +51,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
             </section>
 
-            <section>
-              <h2 className="text-xl font-semibold">Project Overview</h2>
+            {project.sections.map((section) => (
+              <section key={section.heading}>
+                <h2 className="text-xl font-semibold">{section.heading}</h2>
 
-              <p className="mt-3 leading-7 text-muted-foreground">
-                This project page is ready for a full case study. The next step
-                is to add project-specific goals, features, screenshots,
-                technical challenges, and lessons learned.
-              </p>
-            </section>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  {section.body}
+                </p>
+              </section>
+            ))}
 
             <Link
               href="/projects"
