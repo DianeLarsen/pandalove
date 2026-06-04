@@ -1,6 +1,7 @@
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
 import { posts } from "@/data/posts";
+import Link from "next/link";
 
 export default function BlogPage() {
   return (
@@ -15,16 +16,17 @@ export default function BlogPage() {
         <GlassCard>
           <div className="grid gap-4">
             {posts.map((post) => (
-              <article
+              <Link
                 key={post.slug}
-                className="rounded-2xl border border-border bg-card-strong p-6 shadow-sm backdrop-blur-md"
+                href={post.href}
+                className="rounded-2xl border border-border bg-card-strong p-6 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <p className="text-sm text-muted-foreground">{post.date}</p>
 
                 <h2 className="mt-2 text-xl font-semibold">{post.title}</h2>
 
                 <p className="mt-3 text-muted-foreground">{post.summary}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </GlassCard>
