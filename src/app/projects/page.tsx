@@ -1,9 +1,13 @@
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { projects } from "@/data/projects";
+import { client } from "@/sanity/lib/client";
+import { projectsQuery } from "@/sanity/lib/queries";
+import { Project } from "@/types/project";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+    const projects = await client.fetch<Project[]>(projectsQuery);
+
   return (
     <main className="min-h-screen text-foreground">
       <section className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-16">
@@ -17,7 +21,7 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <Link
                 key={project.slug}
-                href={project.href}
+                href={`/projects/${project.slug}`}
                 className="rounded-2xl border border-border bg-card-strong p-6 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">

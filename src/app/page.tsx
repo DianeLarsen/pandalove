@@ -1,9 +1,12 @@
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
-import { projects } from "@/data/projects";
+import { client } from "@/sanity/lib/client";
+import { featuredProjectsQuery } from "@/sanity/lib/queries";
+import { Project } from "@/types/project";
 
-export default function Home() {
-  const featuredProjects = projects.filter((project) => project.featured);
+export default async function Home() {
+  const featuredProjects =
+    await client.fetch<Project[]>(featuredProjectsQuery);
 
   return (
     <main className="min-h-screen text-foreground">
@@ -96,7 +99,7 @@ export default function Home() {
             {featuredProjects.map((project) => (
               <Link
                 key={project.slug}
-                href={project.href}
+                href={`/projects/${project.slug}`}
                 className="rounded-2xl border border-border bg-card p-5 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="mb-4">

@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { projects } from "@/data/projects";
+import { client } from "@/sanity/lib/client";
+import { projectBySlugQuery } from "@/sanity/lib/queries";
+import { Project } from "@/types/project";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -10,16 +12,15 @@ type ProjectPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
+
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
-  const project = projects.find((item) => item.slug === slug);
+  const project = await client.fetch<Project>(
+  projectBySlugQuery,
+  { slug }
+);
 
   if (!project) {
     notFound();
