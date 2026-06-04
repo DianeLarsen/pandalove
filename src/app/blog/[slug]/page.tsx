@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PortableText } from "next-sanity";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
 import { client } from "@/sanity/lib/client";
@@ -45,7 +46,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <GlassCard>
           <article className="prose prose-slate max-w-none dark:prose-invert">
-            {post.body && <PortableText value={post.body} />}
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.body}
+            </ReactMarkdown>
           </article>
 
           <Link

@@ -11,6 +11,7 @@ export const postType = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -21,21 +22,28 @@ export const postType = defineType({
       },
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'summary',
       title: 'Summary',
       type: 'text',
+      validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
+
+  defineField({
+  name: 'body',
+  title: 'Body',
+  type: 'text',
+  rows: 25,
+  validation: (rule) => rule.required(),
+}),
   ],
 })
