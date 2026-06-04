@@ -37,23 +37,21 @@ export const projectBySlugQuery = `
 `;
 
 export const postsQuery = `
-  *[_type == "post" && published == true]
+  *[_type == "post" && defined(slug.current)]
   | order(publishedAt desc) {
     title,
     "slug": slug.current,
     summary,
-    publishedAt,
-    published
+    publishedAt
   }
 `;
 
 export const postBySlugQuery = `
-  *[_type == "post" && slug.current == $slug && published == true][0] {
+  *[_type == "post" && slug.current == $slug][0] {
     title,
     "slug": slug.current,
     summary,
     publishedAt,
-    published,
     body
   }
 `;
