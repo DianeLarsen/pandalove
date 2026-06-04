@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf7ff;
+  --foreground: #17121f;
+  --card: rgba(255, 255, 255, 0.68);
+  --card-strong: rgba(255, 255, 255, 0.86);
+  --muted-foreground: #5f566b;
+  --border: rgba(120, 91, 160, 0.22);
+  --accent: rgba(185, 145, 255, 0.22);
+  --accent-strong: #8b5cf6;
+}
+
+.dark {
+  --background: transparent;
+  --foreground: #f7f4ff;
+  --card: rgba(12, 12, 18, 0.62);
+  --card-strong: rgba(18, 18, 26, 0.86);
+  --muted-foreground: #c9c2d8;
+  --border: rgba(220, 210, 255, 0.18);
+  --accent: rgba(185, 145, 255, 0.18);
+  --accent-strong: #c4a2ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-strong: var(--card-strong);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.22)
+    ),
+    url("/images/backgrounds/pandalove-marble.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+html.dark body::before {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.68),
+      rgba(0, 0, 0, 0.68)
+    ),
+    url("/images/backgrounds/pandalove-marble.jpg");
+
+  filter: saturate(130%) contrast(115%);
+}
+
+.dark body::before {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(180, 90, 255, 0.65), transparent 22%),
+    radial-gradient(circle at 35% 15%, rgba(0, 220, 255, 0.45), transparent 20%),
+    radial-gradient(circle at 60% 12%, rgba(255, 90, 200, 0.40), transparent 22%),
+    radial-gradient(circle at 85% 20%, rgba(140, 255, 220, 0.30), transparent 18%),
+
+    radial-gradient(circle at 20% 65%, rgba(80, 120, 255, 0.40), transparent 26%),
+    radial-gradient(circle at 45% 75%, rgba(180, 140, 255, 0.35), transparent 24%),
+    radial-gradient(circle at 75% 80%, rgba(0, 200, 255, 0.30), transparent 22%),
+
+    linear-gradient(
+      115deg,
+      #020203 0%,
+      #0c0c14 20%,
+      #151528 35%,
+      #080811 55%,
+      #121220 75%,
+      #020203 100%
+    );
+
+  filter: blur(18px) saturate(160%);
+  transform: scale(1.08);
+}
+
+.dark body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      120deg,
+      transparent 0px,
+      rgba(255,255,255,0.02) 2px,
+      transparent 6px,
+      transparent 14px
+    );
+
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+}
+
+::selection {
+  background: var(--accent-strong);
+  color: white;
 }

@@ -1,65 +1,144 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const featuredProjects = [
+  {
+    title: "Digital Knowledgebase",
+    description:
+      "A work-in-progress personal knowledge management system inspired by the Antinet Zettelkasten method, built with Next.js, TypeScript, PostgreSQL, and rich note-linking features.",
+    href: "/projects/knowledgebase",
+    status: "In progress",
+  },
+  {
+    title: "Clinic Intake API",
+    description:
+      "A healthcare-focused backend project using ASP.NET Core, C#, Entity Framework Core, and API design concepts.",
+    href: "/projects/clinic-intake-api",
+    status: "In progress",
+  },
+  {
+    title: "Haven’s Heroes",
+    description:
+      "A neighborhood community platform with authentication, posts, polls, events, role-based access, and user-focused features.",
+    href: "/projects/havens-heroes",
+    status: "Built",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen text-foreground">
+      <section className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
+        <section className="max-w-3xl rounded-3xl border border-border bg-card p-8 shadow-sm backdrop-blur-md">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            Software development • Health informatics • Systems building
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            Hi, I’m Diane Larsen.
+          </h1>
+
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            I build practical software, automate messy processes, and create
+            systems that help people organize information, solve problems, and
+            stop wrestling spreadsheets like it’s a competitive sport.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90"
+            >
+              View Projects
+            </Link>
+
+            <Link
+              href="/blog"
+              className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
+            >
+              Read Blog
+            </Link>
+
+            <Link
+              href="/resume"
+              className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
+            >
+              Resume
+            </Link>
+          </div>
+        </section>
+
+        <section>
+          <div className="mb-6 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight">
+                Featured Projects
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Current and recent software projects.
+              </p>
+            </div>
+
+            <Link
+              href="/projects"
+              className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:block"
+            >
+              View all projects
+            </Link>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.title}
+                href={project.href}
+                className="rounded-2xl border border-border bg-card p-5 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="mb-4">
+                  <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                    {project.status}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-semibold">{project.title}</h3>
+
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {project.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-border bg-card p-6 shadow-sm backdrop-blur-md">
+          <h2 className="text-2xl font-bold tracking-tight">Current Focus</h2>
+
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            <div>
+              <h3 className="font-semibold">Building</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                A new unified portfolio, blog, and project showcase at
+                pandalove.dev.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">Learning</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                ASP.NET Core, C#, backend API design, deployment, and cloud
+                hosting.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">Studying</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Health Informatics, with a focus on practical software systems
+                in healthcare settings.
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
   );
 }
