@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GlassCard from "@/components/GlassCard";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -113,36 +114,26 @@ export default function Home() {
             ))}
           </div>
         </section>
+        <GlassCard>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">About Me</h2>
 
-        <section className="rounded-2xl border border-border bg-card p-6 shadow-sm backdrop-blur-md">
-          <h2 className="text-2xl font-bold tracking-tight">Current Focus</h2>
+            <p className="leading-7 text-muted-foreground">
+              I'm a Senior Engineering Technician, software developer, USAF
+              veteran, and Health Informatics graduate student. I enjoy building
+              software, improving processes, organizing knowledge, and creating
+              systems that make complex work easier to manage.
+            </p>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            <div>
-              <h3 className="font-semibold">Building</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A new unified portfolio, blog, and project showcase at
-                pandalove.dev.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">Learning</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                ASP.NET Core, C#, backend API design, deployment, and cloud
-                hosting.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">Studying</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Health Informatics, with a focus on practical software systems
-                in healthcare settings.
-              </p>
-            </div>
+            <Link
+              href="/about"
+              className="inline-flex rounded-md border border-border px-4 py-2 text-sm font-semibold hover:bg-accent"
+            >
+              Read More
+            </Link>
           </div>
-        </section>
+        </GlassCard>
+
       </section>
     </main>
   );
