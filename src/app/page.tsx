@@ -28,42 +28,68 @@ export default function Home() {
   return (
     <main className="min-h-screen text-foreground">
       <section className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
-        <section className="max-w-3xl rounded-3xl border border-border bg-card p-8 shadow-sm backdrop-blur-md">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-            Software development • Health informatics • Systems building
-          </p>
+        <section className="grid gap-8 rounded-3xl border border-border bg-card p-8 shadow-sm backdrop-blur-md lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              Software Developer • Engineering Technician • Health Informatics
+              Student
+            </p>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Hi, I’m Diane Larsen.
-          </h1>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+              Hi, I’m Diane Larsen.
+            </h1>
 
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            I build practical software, automate messy processes, and create
-            systems that help people organize information, solve problems, and
-            stop wrestling spreadsheets like it’s a competitive sport.
-          </p>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              I build practical software, automate messy processes, and create
+              systems that help people organize information, solve problems, and
+              avoid turning spreadsheets into a lifestyle.
+            </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/projects"
-              className="rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90"
-            >
-              View Projects
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/projects"
+                className="rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90"
+              >
+                View Projects
+              </Link>
 
-            <Link
-              href="/blog"
-              className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
-            >
-              Read Blog
-            </Link>
+              <Link
+                href="/resume"
+                className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
+              >
+                Resume
+              </Link>
 
-            <Link
-              href="/resume"
-              className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
-            >
-              Resume
-            </Link>
+              <a
+                href="https://github.com/DianeLarsen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-border px-5 py-3 text-sm font-semibold transition hover:bg-accent"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card-strong p-5">
+            <p className="text-sm font-semibold text-muted-foreground">
+              Current Focus
+            </p>
+
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <li>
+                <span className="font-semibold text-foreground">Building:</span>{" "}
+                Knowledgebase and Clinic Intake API
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Learning:</span>{" "}
+                ASP.NET Core, C#, Azure, and backend architecture
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Studying:</span>{" "}
+                Health Informatics at Northwestern
+              </li>
+            </ul>
           </div>
         </section>
 
