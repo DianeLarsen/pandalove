@@ -1,30 +1,9 @@
 import Link from "next/link";
-
-const featuredProjects = [
-  {
-    title: "Digital Knowledgebase",
-    description:
-      "A work-in-progress personal knowledge management system inspired by the Antinet Zettelkasten method, built with Next.js, TypeScript, PostgreSQL, and rich note-linking features.",
-    href: "/projects/knowledgebase",
-    status: "In progress",
-  },
-  {
-    title: "Clinic Intake API",
-    description:
-      "A healthcare-focused backend project using ASP.NET Core, C#, Entity Framework Core, and API design concepts.",
-    href: "/projects/clinic-intake-api",
-    status: "In progress",
-  },
-  {
-    title: "Haven’s Heroes",
-    description:
-      "A neighborhood community platform with authentication, posts, polls, events, role-based access, and user-focused features.",
-    href: "/projects/havens-heroes",
-    status: "Built",
-  },
-];
+import { projects } from "@/data/projects";
 
 export default function Home() {
+  const featuredProjects = projects.filter((project) => project.featured);
+
   return (
     <main className="min-h-screen text-foreground">
       <section className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
@@ -115,7 +94,7 @@ export default function Home() {
           <div className="grid gap-4 md:grid-cols-3">
             {featuredProjects.map((project) => (
               <Link
-                key={project.title}
+                key={project.slug}
                 href={project.href}
                 className="rounded-2xl border border-border bg-card p-5 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:shadow-lg"
               >

@@ -1,25 +1,20 @@
+import GlassCard from "@/components/GlassCard";
+import PageHeader from "@/components/PageHeader";
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen text-foreground">
-      <section className="mx-auto max-w-3xl px-4 py-16">
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm backdrop-blur-md">
-          <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-            Contact
-          </p>
+      <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-16">
+        <PageHeader
+          eyebrow="Contact"
+          title="Let's connect."
+          description="I'm interested in software engineering, healthcare technology, automation, backend systems, and practical tools that make work less ridiculous."
+        />
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            Let’s connect.
-          </h1>
-
-          <p className="mt-4 text-lg leading-8 text-muted-foreground">
-            I’m interested in software engineering, healthcare technology,
-            automation, backend systems, and practical tools that make work less
-            ridiculous.
-          </p>
-
-          <div className="mt-8 space-y-3 text-muted-foreground">
+        <GlassCard>
+          <div className="space-y-4 text-muted-foreground">
             <p>
-              Email:{" "}
+              <span className="font-semibold text-foreground">Email:</span>{" "}
               <a
                 href="mailto:Diane.Larsen@outlook.com"
                 className="underline hover:text-foreground"
@@ -29,7 +24,7 @@ export default function ContactPage() {
             </p>
 
             <p>
-              LinkedIn:{" "}
+              <span className="font-semibold text-foreground">LinkedIn:</span>{" "}
               <a
                 href="https://www.linkedin.com/in/dianemlarsen"
                 target="_blank"
@@ -41,7 +36,7 @@ export default function ContactPage() {
             </p>
 
             <p>
-              GitHub:{" "}
+              <span className="font-semibold text-foreground">GitHub:</span>{" "}
               <a
                 href="https://github.com/DianeLarsen"
                 target="_blank"
@@ -52,7 +47,7 @@ export default function ContactPage() {
               </a>
             </p>
           </div>
-        </div>
+        </GlassCard>
       </section>
     </main>
   );

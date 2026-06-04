@@ -1,22 +1,23 @@
+import GlassCard from "@/components/GlassCard";
+import PageHeader from "@/components/PageHeader";
+
 export default function ResumePage() {
   return (
     <main className="min-h-screen text-foreground">
-      <section className="mx-auto max-w-4xl px-4 py-16">
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm backdrop-blur-md">
-          <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-            Resume
-          </p>
+      <section className="mx-auto flex max-w-4xl flex-col gap-8 px-4 py-16">
+        <PageHeader
+          eyebrow="Resume"
+          title="Engineering technician moving deeper into software engineering."
+          description="A practical mix of medical device engineering, software development, automation, and health informatics."
+        />
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
-            Engineering technician moving deeper into software engineering.
-          </h1>
-
-          <div className="mt-8 space-y-6 text-muted-foreground">
+        <GlassCard>
+          <div className="space-y-8 text-muted-foreground">
             <section>
               <h2 className="text-xl font-semibold text-foreground">
                 Current Focus
               </h2>
-              <p className="mt-2">
+              <p className="mt-2 leading-7">
                 Building full-stack and backend projects with Next.js,
                 TypeScript, C#, ASP.NET Core, SQL, and healthcare-focused
                 software design.
@@ -27,7 +28,7 @@ export default function ResumePage() {
               <h2 className="text-xl font-semibold text-foreground">
                 Education
               </h2>
-              <p className="mt-2">
+              <p className="mt-2 leading-7">
                 BS Computer Science. Currently pursuing a Master’s in Health
                 Informatics.
               </p>
@@ -37,14 +38,14 @@ export default function ResumePage() {
               <h2 className="text-xl font-semibold text-foreground">
                 Background
               </h2>
-              <p className="mt-2">
+              <p className="mt-2 leading-7">
                 Senior Engineering Technician building medical devices, with
                 prior USAF experience in F-16/F-15 electrical and environmental
                 systems.
               </p>
             </section>
           </div>
-        </div>
+        </GlassCard>
       </section>
     </main>
   );
