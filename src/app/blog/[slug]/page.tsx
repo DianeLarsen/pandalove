@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { posts } from "@/data/posts";
+import { client } from "@/sanity/lib/client";
+import { postBySlugQuery, postsQuery } from "@/sanity/lib/queries";
+import { Post } from "@/types/post";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -10,7 +13,9 @@ type BlogPostPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const posts = await client.fetch<Post[]>(postsQuery);
+
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -19,7 +24,7 @@ export function generateStaticParams() {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
-  const post = posts.find((item) => item.slug === slug);
+  const post = await client.fetch<Post>(postBySlugQuery, { slug });
 
   if (!post) {
     notFound();
@@ -29,26 +34,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <main className="min-h-screen text-foreground">
       <section className="mx-auto flex max-w-4xl flex-col gap-8 px-4 py-16">
         <PageHeader
-          eyebrow={post.date}
+          eyebrow={new Date(post.publishedAt).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
           title={post.title}
           description={post.summary}
         />
 
         <GlassCard>
-          <div className="space-y-6 text-muted-foreground">
-            <p className="leading-7">
-              This blog post page is ready for migrated content. Eventually,
-              this will pull full post content from Sanity or another content
-              source instead of living directly in the code.
-            </p>
+          <article className="prose prose-slate max-w-none dark:prose-invert">
+            {post.body && <PortableText value={post.body} />}
+          </article>
 
-            <Link
-              href="/blog"
-              className="inline-flex rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent"
-            >
-              Back to blog
-            </Link>
-          </div>
+          <Link
+            href="/blog"
+            className="mt-8 inline-flex rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent"
+          >
+            Back to blog
+          </Link>
         </GlassCard>
       </section>
     </main>

@@ -35,3 +35,25 @@ export const projectBySlugQuery = `
     sections
   }
 `;
+
+export const postsQuery = `
+  *[_type == "post" && published == true]
+  | order(publishedAt desc) {
+    title,
+    "slug": slug.current,
+    summary,
+    publishedAt,
+    published
+  }
+`;
+
+export const postBySlugQuery = `
+  *[_type == "post" && slug.current == $slug && published == true][0] {
+    title,
+    "slug": slug.current,
+    summary,
+    publishedAt,
+    published,
+    body
+  }
+`;
