@@ -1,32 +1,51 @@
 ---
 title: Clinic Intake API
 slug: clinic-intake-api
-status: In progress
-description: A healthcare-focused backend API built to practice the production concerns behind a reliable clinical intake system.
+status: Built
+description: A healthcare-focused ASP.NET Core API that demonstrates secure, clinic-scoped intake workflows and the production practices behind reliable backend services.
 featured: true
 stack:
   - C#
   - ASP.NET Core
   - Entity Framework Core
   - SQLite
-  - Azure
+  - SQL Server
+  - Azure SQL
+  - xUnit
+  - GitHub Actions
 ---
 
-## Project goals
+## The problem
 
-Build a clear, testable API for managing clinic intake requests while learning the engineering work that lives outside the happy-path endpoint: authentication, authorization, validation, logging, health checks, tests, CI, and deployment.
+Clinical intake information is sensitive, changes state over time, and needs to be visible only to the right clinic. A basic create-read-update-delete demo is not enough to show how a backend should behave when access boundaries, validation, failures, and operational support matter.
 
-## What it does
+## What I built
 
-- Creates and manages clinic intake requests.
-- Uses JWT authentication and role-based access.
-- Includes validation, structured request logging, exception handling, and liveness/readiness health checks.
-- Has unit and integration tests plus GitHub Actions CI.
+Clinic Intake API manages patients and intake requests through versioned REST endpoints. It models clinics, patients, and requests as related data; supports request creation, filtering, sorting, paging, status updates, and completed-request cleanup.
 
-## Why it matters
+It started with SQLite for local development and testing, then added a SQL Server/Azure SQL production path and deployment. The project is designed as a learning build, but the concerns are real rather than decorative.
 
-This is deliberately more than a CRUD demo. It is practice for the ordinary-but-critical work of making a backend safe to change and useful when it misbehaves.
+## Engineering focus
+
+- JWT authentication with user roles and a clinic claim.
+- Authorization and clinic-scoped queries so users cannot view another clinic's requests.
+- Entity Framework Core migrations, database seeding, and a deliberate SQLite-to-SQL Server production strategy.
+- DTO validation and clear error responses at the API boundary.
+- Structured request logging, trace IDs, and centralized exception handling.
+- Liveness and readiness health endpoints for deployment checks.
+- Unit and integration tests using xUnit, Moq, and `WebApplicationFactory`.
+- GitHub Actions CI that builds and runs tests on pull requests and `main`.
+
+## Interesting challenges
+
+The project forced me to separate what an endpoint wants to do from what it is allowed to do. The useful question was not only “can this request update a record?” but “does this authenticated user belong to the clinic that owns it?” That became the foundation for the service and repository behavior.
+
+I also learned the dull-but-essential parts of backend work: making errors diagnosable, proving behavior with integration tests, and checking that a deployed application is truly ready rather than merely awake enough to answer HTTP.
+
+## What this demonstrates
+
+This is my strongest relational-data and backend portfolio example: C#, API design, authentication and authorization, Entity Framework Core, SQL, testing, logging, CI, and an Azure deployment path—all tied together in one coherent service.
 
 ## Next steps
 
-Continue expanding real workflow features and document the deployment decisions and tradeoffs.
+Add more clinic workflow features, expand production documentation, and continue practicing the feature work a backend engineer receives after the first version ships: safe schema changes, bug fixes, tests, review, and operational investigation.
