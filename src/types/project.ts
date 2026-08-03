@@ -1,14 +1,11 @@
-export type ProjectSection = {
-  heading: string;
-  body: string;
-};
+export type ProjectStatus = "Built" | "In progress" | "Planned";
 
 export type Project = {
   title: string;
   slug: string;
-  status: string;
+  status: ProjectStatus;
   description: string;
   featured: boolean;
   stack: string[];
-  sections: ProjectSection[];
+  body: string;
 };

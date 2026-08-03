@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { client } from "@/sanity/lib/client";
-import { projectBySlugQuery } from "@/sanity/lib/queries";
-import { Project } from "@/types/project";
+import { getProjectBySlug, getProjects } from "@/lib/content";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -17,10 +17,7 @@ type ProjectPageProps = {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
-  const project = await client.fetch<Project>(
-  projectBySlugQuery,
-  { slug }
-);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -52,15 +49,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
             </section>
 
-            {project.sections.map((section) => (
-              <section key={section.heading}>
-                <h2 className="text-xl font-semibold">{section.heading}</h2>
-
-                <p className="mt-3 leading-7 text-muted-foreground">
-                  {section.body}
-                </p>
-              </section>
-            ))}
+            <article className="prose prose-slate max-w-none dark:prose-invert">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {project.body}
+              </ReactMarkdown>
+            </article>
 
             <Link
               href="/projects"
@@ -73,4 +66,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
     </main>
   );
+}
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
 }

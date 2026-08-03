@@ -1,12 +1,11 @@
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
-import { client } from "@/sanity/lib/client";
-import { featuredProjectsQuery } from "@/sanity/lib/queries";
-import { Project } from "@/types/project";
+import { getProjects } from "@/lib/content";
 
 export default async function Home() {
-  const featuredProjects =
-    await client.fetch<Project[]>(featuredProjectsQuery);
+  const featuredProjects = (await getProjects()).filter(
+    (project) => project.featured,
+  );
 
   return (
     <main className="min-h-screen text-foreground">
@@ -122,7 +121,7 @@ export default async function Home() {
             <h2 className="text-2xl font-bold">About Me</h2>
 
             <p className="leading-7 text-muted-foreground">
-              I'm a Senior Engineering Technician, software developer, USAF
+              I&apos;m a Senior Engineering Technician, software developer, USAF
               veteran, and Health Informatics graduate student. I enjoy building
               software, improving processes, organizing knowledge, and creating
               systems that make complex work easier to manage.

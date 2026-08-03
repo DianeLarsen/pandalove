@@ -1,12 +1,10 @@
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { client } from "@/sanity/lib/client";
-import { projectsQuery } from "@/sanity/lib/queries";
-import { Project } from "@/types/project";
+import { getProjects } from "@/lib/content";
 
 export default async function ProjectsPage() {
-    const projects = await client.fetch<Project[]>(projectsQuery);
+  const projects = await getProjects();
 
   return (
     <main className="min-h-screen text-foreground">

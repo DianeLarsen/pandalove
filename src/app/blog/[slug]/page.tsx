@@ -4,9 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { client } from "@/sanity/lib/client";
-import { postBySlugQuery, postsQuery } from "@/sanity/lib/queries";
-import { Post } from "@/types/post";
+import { getPostBySlug, getPosts } from "@/lib/content";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -15,7 +13,7 @@ type BlogPostPageProps = {
 };
 
 export async function generateStaticParams() {
-  const posts = await client.fetch<Post[]>(postsQuery);
+  const posts = await getPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -25,7 +23,7 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
-  const post = await client.fetch<Post>(postBySlugQuery, { slug });
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
