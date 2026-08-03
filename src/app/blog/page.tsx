@@ -1,12 +1,10 @@
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
-import { client } from "@/sanity/lib/client";
-import { postsQuery } from "@/sanity/lib/queries";
-import { Post } from "@/types/post";
+import { getPosts } from "@/lib/content";
 
 export default async function BlogPage() {
-  const posts = await client.fetch<Post[]>(postsQuery);
+  const posts = await getPosts();
 
   return (
     <main className="min-h-screen text-foreground">
@@ -20,8 +18,7 @@ export default async function BlogPage() {
         <GlassCard>
           {posts.length === 0 ? (
             <p className="text-muted-foreground">
-              No published posts yet. The CMS exists, though, so at least the
-              machinery is pretending to be useful.
+              No posts yet. Add a Markdown file in content/blog and commit it.
             </p>
           ) : (
             <div className="grid gap-4">
