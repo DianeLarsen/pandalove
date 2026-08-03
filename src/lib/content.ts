@@ -113,3 +113,15 @@ export async function getProjects(): Promise<Project[]> {
 export async function getProjectBySlug(slug: string) {
   return (await getProjects()).find((project) => project.slug === slug);
 }
+
+export async function getResume() {
+  const filePath = path.join(contentRoot, "resume.md");
+  const source = await readFile(filePath, "utf8");
+  const { metadata, body } = parseFrontMatter(source, filePath);
+
+  return {
+    title: requiredString(metadata, "title", filePath),
+    summary: requiredString(metadata, "summary", filePath),
+    body,
+  };
+}
