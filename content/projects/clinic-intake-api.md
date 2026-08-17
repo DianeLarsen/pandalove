@@ -47,6 +47,11 @@ I also learned the dull-but-essential parts of backend work: making errors diagn
 
 This is my strongest relational-data and backend portfolio example: C#, API design, authentication and authorization, Entity Framework Core, SQL, testing, logging, CI, and an Azure deployment path—all tied together in one coherent service.
 
+## Explore the project
+
+- [View the source code on GitHub](https://github.com/DianeLarsen/clinic-intake-api)
+- [View the live API readiness check](https://clinic-intake-api-dlarsen-2026-dhdmdmesgkgygpbz.westus-01.azurewebsites.net/health/ready)
+
 ## Version 1.0 and post-release work
 
 Version 1.0 is complete. Future tickets are deliberately post-release learning and production-readiness work, not unfinished core scope:
