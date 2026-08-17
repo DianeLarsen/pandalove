@@ -2,7 +2,7 @@
 title: Clinic Intake API
 slug: clinic-intake-api
 status: Built
-description: A healthcare-focused ASP.NET Core API that demonstrates secure, clinic-scoped intake workflows and the production practices behind reliable backend services.
+description: A production-deployed ASP.NET Core API that demonstrates secure, clinic-scoped intake workflows and the backend practices behind reliable healthcare services.
 featured: true
 stack:
   - C#
@@ -21,9 +21,9 @@ Clinical intake information is sensitive, changes state over time, and needs to 
 
 ## What I built
 
-Clinic Intake API manages patients and intake requests through versioned REST endpoints. It models clinics, patients, and requests as related data; supports request creation, filtering, sorting, paging, status updates, and completed-request cleanup.
+Clinic Intake API manages patients and intake requests through versioned REST endpoints. It models clinics, patients, and requests as related data; supports request creation, filtering, sorting, paging, status updates, status history, and completed-request cleanup.
 
-It started with SQLite for local development and testing, then added a SQL Server/Azure SQL production path and deployment. The project is designed as a learning build, but the concerns are real rather than decorative.
+It uses SQLite for local development and testing, with SQL Server/Azure SQL for production. Version 1.0 is deployed to Azure App Service with production health checks; the project is a learning build, but the concerns are real rather than decorative.
 
 ## Engineering focus
 
@@ -35,6 +35,7 @@ It started with SQLite for local development and testing, then added a SQL Serve
 - Liveness and readiness health endpoints for deployment checks.
 - Unit and integration tests using xUnit, Moq, and `WebApplicationFactory`.
 - GitHub Actions CI that builds and runs tests on pull requests and `main`.
+- Azure App Service deployment with Azure SQL, SQL connection retry handling, and live/readiness health checks.
 
 ## Interesting challenges
 
@@ -46,6 +47,12 @@ I also learned the dull-but-essential parts of backend work: making errors diagn
 
 This is my strongest relational-data and backend portfolio example: C#, API design, authentication and authorization, Entity Framework Core, SQL, testing, logging, CI, and an Azure deployment path—all tied together in one coherent service.
 
-## Next steps
+## Version 1.0 and post-release work
 
-Add more clinic workflow features, expand production documentation, and continue practicing the feature work a backend engineer receives after the first version ships: safe schema changes, bug fixes, tests, review, and operational investigation.
+Version 1.0 is complete. Future tickets are deliberately post-release learning and production-readiness work, not unfinished core scope:
+
+- Filter intake requests by status and date.
+- Expand the request-status-history workflow.
+- Add Application Insights monitoring and alerting.
+- Practice safe production schema migrations.
+- Continue with the normal backend-engineering loop: bug fixes, tests, code review, and operational investigation.
