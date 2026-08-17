@@ -61,7 +61,7 @@ export default async function Home() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
                 <span className="font-semibold text-foreground">Building:</span>{" "}
-                Knowledgebase and Clinic Intake API
+                TextBound and BunQuest
               </li>
               <li>
                 <span className="font-semibold text-foreground">Learning:</span>{" "}
