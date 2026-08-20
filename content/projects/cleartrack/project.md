@@ -29,7 +29,7 @@ Northstar Community Care Network operates several outpatient clinics. Staff curr
 
 Northstar needs a small internal web application that gives authorized staff one trustworthy place to see equipment readiness and record operational updates.
 
-![Prototype image of ClearTrack Dashboard](/images/projects/cleartrack/prototype-iamge.png)
+![Prototype image of ClearTrack Dashboard](/images/projects/cleartrack/prototype-image.png)
 
 ## The problem to solve
 
