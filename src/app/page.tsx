@@ -61,11 +61,15 @@ export default async function Home() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
                 <span className="font-semibold text-foreground">Building:</span>{" "}
-                TextBound and BunQuest
+                ClearTrack, an equipment-readiness portal for clinic workflows
               </li>
               <li>
                 <span className="font-semibold text-foreground">Learning:</span>{" "}
-                ASP.NET Core, C#, Azure, and backend architecture
+                AI-assisted engineering, cloud deployment, and reliable backend systems
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Improving:</span>{" "}
+                TestLog Triage, a Python tool for surfacing medical-device test-log reliability signals
               </li>
               <li>
                 <span className="font-semibold text-foreground">Studying:</span>{" "}
